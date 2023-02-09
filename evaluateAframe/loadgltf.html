@@ -1,0 +1,91 @@
+<html>
+  <head>
+    <script src="./src/aframe.min.js"></script>
+  </head>
+  <body>
+    <script>
+      AFRAME.registerComponent('measure-fps', {
+        schema: {
+            startFlag: {type: 'bool', default:true},
+            frameCount: {type: 'int', default: 0},
+            startTime: {type:'float', default: 0},
+            shouldLog: {type: 'bool', default: true}
+        },
+        init: function () {
+          this.data.startFlag = true;
+          this.data.frameCount = 0;
+          this.data.startTime = 0;
+          this.data.shouldLog = true;
+          console.log('mark')
+        },
+        tock: function () {
+          let sceneLoaded = document.querySelector('#my-scene').hasLoaded;
+          if (sceneLoaded){
+                let time = performance.now();
+                if (this.data.startFlag) {
+                    this.data.startTime = time;
+                    this.data.startFlag = false;
+                    console.log('startTime',this.data.startTime);
+                }
+                this.data.frameCount += 1;
+                if(this.data.frameCount % 1000 === 0) {
+                    let fps = 1000 * this.data.frameCount / (time - this.data.startTime);
+                    console.log(this.data.frameCount,fps,'fps');
+                } 
+                if ((time - this.data.startTime) /1000 > 60 && this.data.shouldLog){
+                    this.data.shouldLog = false;
+                    let fps = 1000 * this.data.frameCount / (time - this.data.startTime);
+                    console.log('1min', (time - this.data.startTime)/1000, this.data.frameCount,fps,'fps');
+                }
+            } else{
+              console.log('not loaded yet');
+            }
+        }
+      });
+     
+    </script>
+    <!-- <a-scene id='my-scene' measure-fps gltf-model="dracoDecoderPath: ../decoder/;" vr-mode-ui="enabled: false">
+        <a-entity  gltf-model="../gltf/compress/girl/scene.glb" scale="0.5 0.5 0.5" position="0 1 -1"></a-entity>
+        <a-entity  gltf-model="../gltf/compress/girl/scene.glb" scale="0.5 0.5 0.5" position="0 1.1 -1"></a-entity>
+    </a-scene> -->
+
+    <!-- <a-scene>
+        <a-assets>
+          <a-asset-item id="girl" src="../gltf/scifi_girl/scene.gltf"></a-asset-item>
+        </a-assets>
+      
+        <a-entity gltf-model="#girl" scale="0.5 0.5 0.5" position="0 1 -1"></a-entity>
+        <a-entity gltf-model="#girl" scale="0.5 0.5 0.5" position="0 1.1 -1"></a-entity>
+      </a-scene>
+    <script> -->
+
+      <!-- <a-scene id='my-scene' measure-fps  vr-mode-ui="enabled: false">
+        <a-entity  gltf-model="../gltf/BoomBox/BoomBox.gltf" scale="5 5 5" position="0 1 -1"></a-entity>
+        <a-entity  gltf-model="../gltf/BoomBox/BoomBox.gltf" scale="5 5 5" position="0 1.1 -1"></a-entity>
+        <a-entity  gltf-model="../gltf/BoomBox/BoomBox.gltf" scale="5 5 5" position="0 1 -1"></a-entity>
+        <a-entity  gltf-model="../gltf/BoomBox/BoomBox.gltf" scale="5 5 5" position="0 1.1 -1"></a-entity>
+        <a-entity  gltf-model="../gltf/BoomBox/BoomBox.gltf" scale="5 5 5" position="0 1 -1"></a-entity>
+        <a-entity  gltf-model="../gltf/BoomBox/BoomBox.gltf" scale="5 5 5" position="0 1.1 -1"></a-entity>
+    </a-scene> -->
+
+    <a-scene>
+      <a-assets>
+        <a-asset-item id="BoomBox" src="../gltf/BoomBox/BoomBox.gltf"></a-asset-item>
+      </a-assets>
+    
+      <a-gltf-model src="#BoomBox" scale="5 5 5" position="0 1 -1"></a-gltf-model>
+       <a-gltf-model src="#BoomBox"></a-gltf-model>
+      <a-gltf-model src="#BoomBox"></a-gltf-model>
+      <a-gltf-model src="#BoomBox"></a-gltf-model>
+        <a-gltf-model src="#BoomBox"></a-gltf-model>
+        <a-gltf-model src="#BoomBox"></a-gltf-model>
+      <a-gltf-model src="#BoomBox"></a-gltf-model>
+      <a-gltf-model src="#BoomBox"></a-gltf-model>
+    
+      
+    </a-scene>
+     
+      
+    </script>
+  </body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Hello WebXR!</title>
+
+    
+</head>
+
+<body>
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "./node_modules/three/build/three.module.js",
+                "GLTFLoader":"./node_modules/three/examples/jsm/loaders/GLTFLoader.js",
+                "RoomEnvironment": "./node_modules/three/examples/jsm/environments/RoomEnvironment.js",
+                "stats": "./src/myStats.js",
+                "DRACOLoader": "./node_modules/three/examples/jsm/loaders/DRACOLoader.js" 
+            }
+        }
+    </script>  
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { GLTFLoader } from 'GLTFLoader';
+        import { RoomEnvironment } from 'RoomEnvironment';
+        import Stats from 'stats';
+        import {DRACOLoader} from 'DRACOLoader';
+        
+        let button=document.createElement("button");
+        let buttonText=document.createTextNode("CLICK ME");
+	    button.appendChild(buttonText);
+        button.addEventListener("click", activateXR);
+        document.body.appendChild(button);
+        let stats = null;
+        let girl = null;
+        let tree = null;
+        let mononoke = null;
+        let models = [];
+        let clickTime;
+       
+       
+        function createThreeScene(renderer) {
+            const pmremGenerator = new THREE.PMREMGenerator( renderer );
+            const scene = new THREE.Scene();
+           
+            scene.environment = pmremGenerator.fromScene( new RoomEnvironment(), 0.04 ).texture;
+            // const materials = [
+            //     new THREE.MeshBasicMaterial({ color: 0xff0000 }),
+            //     new THREE.MeshBasicMaterial({ color: 0x0000ff }),
+            //     new THREE.MeshBasicMaterial({ color: 0x00ff00 }),
+            //     new THREE.MeshBasicMaterial({ color: 0xff00ff }),
+            //     new THREE.MeshBasicMaterial({ color: 0x00ffff }),
+            //     new THREE.MeshBasicMaterial({ color: 0xffff00 })
+            // ];   
+            // const box = new THREE.Mesh(new THREE.BoxBufferGeometry(0.2, 0.2, 0.2), materials);
+            // box.position.set(0,-1, -1);
+            // scene.add(box);
+            let loader = new GLTFLoader();
+            const dracoLoader = new DRACOLoader();
+            dracoLoader.setDecoderPath('./decoder/');
+            loader.setDRACOLoader(dracoLoader);
+            loader.load( './gltf/compress/girl/scene.glb', function ( gltf ) {
+                girl = gltf.scene;   
+                console.log('girl');   
+                for (let i = 0; i < 4; i++) {
+                    for (let j = 0; j < 2; j++) {
+                        let model = girl.clone();
+                        model.position.set( 0.2 + 0.2*i, -1 - 0.9*j, -1);
+                        model.scale.set( 0.4, 0.4, 0.4 );
+                        scene.add( model); 
+                        models.push(model);
+                    }
+                }     
+            }, undefined, function ( error ) {
+                console.error( error );
+            } );  
+           
+            
+            // loader.load( './gltf/compress/tree/scene.glb', function ( gltf ) {
+            //     tree = gltf.scene;
+            //     console.log('tree');	
+            //     for (let i = 0; i < 4; i++) {
+            //         for (let j = 0; j < 2; j++) {
+            //             let model = tree.clone();
+            //             model.position.set( 0 + 0.2*i, -2 + 0.9*j, -1);
+            //             model.scale.set( 0.04, 0.04, 0.04 );
+            //             scene.add( model); 
+            //             models.push(model);
+            //         }
+            //     }  	
+            // }, undefined, function ( error ) {
+            //     console.error( error );
+            // } );
+           
+
+            // loader.load( './gltf/compress/mononoke/scene.glb', function ( gltf ) {
+            //     mononoke = gltf.scene;
+            //     console.log('mononoke'); 
+            //     for (let i = 0; i < 4; i++) {
+            //         for (let j = 0; j < 2; j++) {
+            //             let model = mononoke.clone();
+            //             model.position.set( 0 + 0.2*i, -1 + 0.9*j, -1);
+            //             model.scale.set( 0.07, 0.07, 0.07 );
+            //             scene.add( model); 
+            //             models.push(model);
+            //         }
+            //     }  	
+            // }, undefined, function ( error ) {
+            //     console.error( error );
+            // } );
+            return scene;
+        }
+
+      
+
+        function createThreeRenderer(canvas,gl) {
+            const renderer = new THREE.WebGLRenderer({
+                alpha: true,
+                preserveDrawingBuffer: true,
+                canvas: canvas,
+                context: gl
+            });
+          
+            renderer.autoClear = false;
+           
+            return renderer;
+        }
+
+        function createThreeCamera() {
+            // The API directly updates the camera matrices.
+            // Disable matrix auto updates so three.js doesn't attempt
+            // to handle the matrices independently.
+            const camera = new THREE.PerspectiveCamera();
+            camera.matrixAutoUpdate = false;
+            return camera;
+        }
+
+        function createDomOverlay() {
+            let uiElement = document.createElement('div');
+            stats = new Stats();
+            stats.dom.style.top = '100px';
+            stats.dom.style.left = '300px';
+            uiElement.appendChild(stats.dom);
+            document.body.appendChild(uiElement);
+            return uiElement;
+        }
+
+        async function activateXR() {
+            clickTime = ( performance || Date ).now()
+            console.log('click time', clickTime);
+            // Add a canvas element and initialize a WebGL context that is compatible with WebXR.
+          
+            const canvas = document.createElement("canvas");
+            document.body.appendChild(canvas);
+            //想让three的光线正常运行，需要使用webgl2而不是webgl
+            const gl = canvas.getContext("webgl2", {
+                xrCompatible: true
+            });
+
+            const renderer = createThreeRenderer(canvas,gl);
+            const scene = createThreeScene(renderer);
+            const camera = createThreeCamera();
+
+            // Initialize a WebXR session using "immersive-ar".
+            let uiElement = createDomOverlay();
+            const session = await navigator.xr.requestSession("immersive-ar",{
+                optionalFeatures: ['dom-overlay'],
+                domOverlay: { root: uiElement } });
+            session.updateRenderState({
+                baseLayer: new XRWebGLLayer(session, gl)
+            });
+           
+            // A 'local' reference space has a native origin that is located
+            // near the viewer's position at the time the session was created.
+            const referenceSpace = await session.requestReferenceSpace('local');
+            let startFlag = true;
+            let frameCount = 0;
+            let startTime = null;
+            let shouldLog = true;
+            let first = true;
+            //precompile
+            renderer.compile(scene,camera);
+            // Create a render loop that allows us to draw on the AR view.
+            const onXRFrame = (t, frame) => {
+                    // Queue up the next draw request.
+                    //get device camera stream
+                    
+                    session.requestAnimationFrame(onXRFrame);
+                    let time = performance.now();
+                    // Bind the graphics framebuffer to the baseLayer's framebuffer
+                    gl.bindFramebuffer(gl.FRAMEBUFFER, session.renderState.baseLayer.framebuffer);
+                   
+                    // Retrieve the pose of the device.
+                    // XRFrame.getViewerPose can return null while the session attempts to establish tracking.
+                    const pose = frame.getViewerPose(referenceSpace);
+                    if (pose) {
+                        // In mobile AR, we only have one view.
+                        const view = pose.views[0];
+
+                        const viewport = session.renderState.baseLayer.getViewport(view);
+                        renderer.setSize(viewport.width, viewport.height)
+
+                        // Use the view's transform matrix and projection matrix to configure the THREE.camera.
+                        camera.matrix.fromArray(view.transform.matrix)
+                        camera.projectionMatrix.fromArray(view.projectionMatrix);
+                        camera.updateMatrixWorld(true);
+
+                        // Rotate Model
+                        for(let i=0;i<models.length;i++) {
+                            models[i].rotation.y += 0.01;
+                        } 
+                        if (stats != null) {
+                            stats.update(time);
+                        }
+                       
+                        // Render the scene with THREE.WebGLRenderer.
+                        renderer.render(scene, camera);
+                        if (girl !== null && stats !== null){
+                            if (startFlag) {
+                                startTime = time;
+                                startFlag = false;
+                                console.log('startTime',startTime,'duration',startTime-clickTime);
+                            }
+                            frameCount += 1;
+                            if(frameCount % 1000 === 0) {
+                                let fps = 1000 * frameCount / (time - startTime);
+                                console.log(frameCount,fps,'fps');
+                            } 
+                            if ((time - startTime) /1000 > 60 && shouldLog){
+                                shouldLog = false;
+                                let fps = 1000 * frameCount / (time - startTime);
+                                console.log('1min', (time - startTime)/1000, frameCount,fps,'fps');
+                            }
+                        }
+                       
+                        
+
+                    }
+                }
+               
+                //get device camera stream
+            session.requestAnimationFrame(onXRFrame);
+        }
+    </script>
+</body>
+
+</html>

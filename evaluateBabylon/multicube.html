@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>My first babylon.js app</title>
+		<style>
+			body { margin: 0; }
+		</style>
+        <script src="./node_modules/babylonjs/babylon.js"></script>
+        <script src="./src/mybabylon.glTFFileLoader.js"></script>
+	</head>
+	<body>
+        <canvas id="renderCanvas"></canvas>
+       
+		<script>
+            
+            let girl=null;
+            // get the canvas DOM element
+            var canvas = document.getElementById('renderCanvas');
+            canvas.width=window.innerWidth;
+            canvas.height=window.innerHeight;
+            // Load the 3D engine
+            var engine = new BABYLON.Engine(canvas, {antialias:true,adaptToDeviceRatio:true});
+            // CreateScene function that creates and return the scene
+            var createScene = function(){
+                // Create a basic BJS Scene object
+                var scene = new BABYLON.Scene(engine);
+                // Create a FreeCamera, and set its position to {x: 0, y: 5, z: -10}
+                var camera = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(0, 5, -10), scene);
+                // Target the camera to scene origin
+                camera.setTarget(BABYLON.Vector3.Zero());
+                // Attach the camera to the canvas
+                camera.attachControl(canvas, false);
+                // Create a basic light, aiming 0, 1, 0 - meaning, to the sky
+                var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0, 1, 0), scene);
+                
+                let minx=-2, miny=-7, minz=1;
+                let maxx=2, maxy=2, maxz = 20;
+                 // Our built-in 'sphere' shape.
+                
+                let edgeNum=2;
+                for(let i=0;i<edgeNum;++i){
+                    for(let j=0;j<edgeNum;++j){
+                        for(let k=0;k<edgeNum;++k){
+                            let cube= BABYLON.MeshBuilder.CreateBox("box",{size:0.1} , scene);
+                            let curx = minx + (maxx-minx)/(edgeNum-1)*i;
+                            let cury = miny+ (maxy-miny)/(edgeNum-1)*j;
+                            let curz = minz + (maxz-minz)/(edgeNum-1)*k;
+                            cube.position = new BABYLON.Vector3(curx,cury,curz);
+                            
+                        }
+                    }
+                }
+                
+
+                
+
+                
+                return scene;
+            }
+            // call the createScene function
+            var scene = createScene();
+            let startFlag = true;
+            let frameCount = 0;
+            let startTime = null;
+            let shouldLog = true;
+            // run the render loop
+            // Register and execute a render loop. The engine can have more than one render function
+            engine.runRenderLoop(function(){
+                // Render the scene
+                scene.render();
+                // console.log('hi');
+                if (girl!==null){
+                    girl.rotate(BABYLON.Axis.Y, 0.01, BABYLON.Space.WORLD);
+                    let time = performance.now();
+                    if (startFlag) {
+                        startTime = time;
+                        startFlag = false;
+                        console.log('startTime',startTime);
+                    }
+                    frameCount += 1;
+                    if(frameCount % 1000 === 0) {
+                        let fps = 1000 * frameCount / (time - startTime);
+                        console.log(frameCount,fps,'fps');
+                    } 
+                    if ((time - startTime) /1000 > 60 && shouldLog){
+                        shouldLog = false;
+                        let fps = 1000 * frameCount / (time - startTime);
+                        console.log('1min', (time - startTime)/1000, frameCount,fps,'fps');
+                    }
+                }
+            });
+            // the canvas/window resize event handler
+            window.addEventListener('resize', function(){
+                engine.resize();
+               
+            });
+		</script>
+	</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Basic Scene with WebXR</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<!-- <link type="text/css" rel="stylesheet" href="style.css"> -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r126/three.js" crossorigin="anonymous"></script> -->
+</head>
+
+<body>
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "./node_modules/three/build/three.module.js",
+                "FBXLoader":"./node_modules/three/examples/jsm/loaders/FBXLoader.js",
+                "RoomEnvironment": "./node_modules/three/examples/jsm/environments/RoomEnvironment.js",
+                "stats": "./src/myStats.js",
+                "ARButton": "./node_modules/three/examples/jsm/webxr/ARButton.js"
+
+            }
+        }
+    </script> 
+	<script type="module">
+    
+        // To start an AR scene with webXR, we can use a handy button provided by three.js
+        // We first have to import it because it is a javascript module
+       
+        import * as THREE from 'three';
+        import { FBXLoader } from 'FBXLoader';
+        import { RoomEnvironment } from 'RoomEnvironment';
+        import Stats from 'stats';
+        import { ARButton } from 'ARButton';
+        let name = 'DamagedHelmet';
+        let N=2;
+        let camera, scene, renderer,controls,stats,content;
+        let loader,mesh; // we need to create a variable for a gltf model loader
+        let models = [];
+       
+        let loaded=false;
+        let initTime = ( performance || Date ).now()
+        console.log('init time',initTime);
+		init();
+		animate();
+
+		function init() { 
+			const container = document.createElement('div');
+			document.body.appendChild(container);
+            stats = new Stats();
+            stats.dom.style.top = '20px';
+            stats.dom.style.left = '300px';
+            container.appendChild(stats.dom);
+            renderer = new THREE.WebGLRenderer({alpha: true });
+			renderer.setPixelRatio(window.devicePixelRatio);
+			renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.xr.enabled = true; // New!
+			container.appendChild(renderer.domElement);
+           
+            const pmremGenerator = new THREE.PMREMGenerator( renderer );
+			scene = new THREE.Scene();
+            scene.environment = pmremGenerator.fromScene( new RoomEnvironment(), 0.04 ).texture;
+            const ambientLight = new THREE.AmbientLight( 0xcccccc, 1.4 );
+			scene.add( ambientLight );
+			camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight,1,100 );
+
+                
+            loader = new FBXLoader();
+            let url;
+            if(name==='Box' ){
+                url='../fbx/Box/Box.fbx';
+            }else if(name==='BoxTextured'){
+                url='../fbx/BoxTextured/BoxTextured.fbx';
+            }else if(name==='BoomBox'){
+                url='../fbx/BoomBox/BoomBox.fbx';
+            }else if(name==='DamagedHelmet'){
+                url='../fbx/DamagedHelmet/DamagedHelmet.fbx';
+            }
+           
+            loader.load( url, function ( fbx ) {
+                let minx,miny,minz,maxx,maxy,maxz;
+            
+                minx = -0.5, miny = -0.6, minz= -20;
+                maxx = 0.5, maxy=0.8, maxz=-3;
+                
+                let edgeNum=N;
+                let scale;
+                if(name==="Box"){
+                    scale=0.05;
+                }else if(name==='BoxTextured'){
+                    scale=0.05;
+                }else if (name==='BoomBox'){
+                    scale=0.04;
+                }else if(name==='DamagedHelmet'){
+                    scale=0.0005;
+                }
+                for(let i=0;i<edgeNum;++i){
+                    for(let j=0;j<edgeNum;++j){
+                        for(let k=0;k<edgeNum;++k){
+                            let curx = minx + (maxx-minx)/(edgeNum-1)*i;
+                            let cury = miny+ (maxy-miny)/(edgeNum-1)*j;
+                            let curz = minz + (maxz-minz)/(edgeNum-1)*k;
+                            let model = fbx.clone();
+                            model.position.set( curx,cury,curz);
+                            model.scale.set( scale,scale,scale );
+                            scene.add( model); 
+                        }
+                    }
+                }
+                document.body.appendChild(ARButton.createButton(renderer));
+                console.log('model loaded time',performance.now());
+                    loaded=true;
+            })
+           
+           
+			window.addEventListener('resize', onWindowResize, false);
+		}
+
+		function onWindowResize() {
+			camera.aspect = window.innerWidth / window.innerHeight;
+			camera.updateProjectionMatrix();
+
+			renderer.setSize(window.innerWidth, window.innerHeight);
+		}
+        let startFlag = true;
+        let frameCount = 0;
+        let startTime = null;
+        let shouldLog = true;
+        let first = true;
+        function animate() {
+			renderer.setAnimationLoop(render);
+		}
+
+		function render() {      
+			renderer.render(scene, camera);
+		}
+    
+	</script>
+</body>
+
+</html>

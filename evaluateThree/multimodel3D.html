@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Basic Scene with WebXR</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<!-- <link type="text/css" rel="stylesheet" href="style.css"> -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r126/three.js" crossorigin="anonymous"></script> -->
+</head>
+
+<body>
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "./node_modules/three/build/three.module.js",
+                "GLTFLoader":"./node_modules/three/examples/jsm/loaders/GLTFLoader.js",
+                "RoomEnvironment": "./node_modules/three/examples/jsm/environments/RoomEnvironment.js",
+                "stats": "./src/myStats.js",
+                "DRACOLoader": "./node_modules/three/examples/jsm/loaders/DRACOLoader.js"
+
+            }
+        }
+    </script> 
+	<script type="module">
+    
+        // To start an AR scene with webXR, we can use a handy button provided by three.js
+        // We first have to import it because it is a javascript module
+       
+        import * as THREE from 'three';
+        import { GLTFLoader } from 'GLTFLoader';
+        import { RoomEnvironment } from 'RoomEnvironment';
+        import Stats from 'stats';
+        import {DRACOLoader} from 'DRACOLoader';
+
+        let camera, scene, renderer,controls,stats,content;
+        let loader,mesh; // we need to create a variable for a gltf model loader
+        let girl = null;
+        let turbo = null;
+        let tree = null;
+        let mononoke = null;
+        let models = [];
+        let initTime = ( performance || Date ).now()
+        console.log('init time',initTime);
+		init();
+		// animate();
+
+		function init() { 
+			const container = document.createElement('div');
+			document.body.appendChild(container);
+            stats = new Stats();
+            stats.dom.style.top = '20px';
+            stats.dom.style.left = '300px';
+            container.appendChild(stats.dom);
+            renderer = new THREE.WebGLRenderer({alpha: true });
+			renderer.setPixelRatio(window.devicePixelRatio);
+			renderer.setSize(window.innerWidth, window.innerHeight);
+			container.appendChild(renderer.domElement);
+           
+            const pmremGenerator = new THREE.PMREMGenerator( renderer );
+			scene = new THREE.Scene();
+            scene.environment = pmremGenerator.fromScene( new RoomEnvironment(), 0.04 ).texture;
+            
+			camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight,1,100 );
+
+                
+            //   //添加立方体
+            // const geometry2 = new THREE.BoxGeometry( 1, 1, 1 );//立方体对象，包含立方体中的顶点(vertices)和面(faces)
+            // const material2 = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );//添加材质，让立方体有颜色
+            // const cube = new THREE.Mesh( geometry2, material2 );//网格包括一个几何体以及作用在几何体上的材质，可以直接将网格对象放到场景中，并且让他自由移动
+            // cube.position.set(0, 0, -3);
+            // cube.scale.set( 0.2, 0.2, 0.2 );
+            // scene.add( cube );//添加立方体，默认坐标是(0,0,0)，会与摄像机重合
+            loader = new GLTFLoader();
+            //Draco Loader is needed for Draco compressed models
+            const dracoLoader = new DRACOLoader();
+            dracoLoader.setDecoderPath('./decoder/');
+            loader.setDRACOLoader(dracoLoader);
+            
+            loader.load( './gltf/compress/girl/scene.glb', function ( gltf ) {
+                girl = gltf.scene;   
+                console.log('girl');   
+                for (let i = 0; i < 4; i++) {
+                    for (let j = 0; j < 2; j++) {
+                        let model = girl.clone();
+                        model.position.set( -0.3 + 0.2*i, 0.3 - 0.9*j, -3);
+                        model.scale.set( 0.4, 0.4, 0.4 );
+                        scene.add( model); 
+                        models.push(model);
+                    }
+                }     
+            }, undefined, function ( error ) {
+                console.error( error );
+            } );  
+           
+           
+            // loader.load( './gltf/compress/tree/scene.glb', function ( gltf ) {
+            //     tree = gltf.scene;
+            //     console.log('tree');	
+            //     for (let i = 0; i < 4; i++) {
+            //         for (let j = 0; j < 2; j++) {
+            //             let model = tree.clone();
+            //             model.position.set( -0.3 + 0.2*i, -0.9 + 0.9*j, -3);
+            //             model.scale.set( 0.04, 0.04, 0.04 );
+            //             scene.add( model); 
+            //             models.push(model);
+            //         }
+            //     }  	
+                
+            // }, undefined, function ( error ) {
+            //     console.error( error );
+            // } );
+
+            // loader.load( './gltf/compress/mononoke/scene.glb', function ( gltf ) {
+            //     mononoke = gltf.scene;
+            //     console.log('mononoke'); 
+            //     for (let i = 0; i < 4; i++) {
+            //         for (let j = 0; j < 2; j++) {
+            //             let model = mononoke.clone();
+            //             model.position.set( 0 + 0.2*i, -0.9 + 0.9*j, -3);
+            //             model.scale.set( 0.07, 0.07, 0.07 );
+            //             scene.add( model); 
+            //             models.push(model);
+            //         }
+            //     }  	
+			// 	scene.add( mononoke );            
+            // }, undefined, function ( error ) {
+            //     console.error( error );
+            // } );
+            
+
+			window.addEventListener('resize', onWindowResize, false);
+		}
+
+		function onWindowResize() {
+			camera.aspect = window.innerWidth / window.innerHeight;
+			camera.updateProjectionMatrix();
+
+			renderer.setSize(window.innerWidth, window.innerHeight);
+		}
+        let startFlag = true;
+        let frameCount = 0;
+        let startTime = null;
+        let shouldLog = true;
+        let first = true;
+        renderer.compile(scene,camera);
+		function animate(t) {
+			requestAnimationFrame( animate );
+            // for(let i=0;i<models.length;i++) {
+            //     models[i].rotation.y += 0.01;
+            // } 
+       
+            // console.log(timestamp);
+            let time = performance.now();
+            stats.update(time);
+            
+			renderer.render(scene, camera);
+            if (girl !== null && stats !== null){
+                if (startFlag) {
+                    startTime = time;
+                    startFlag = false;
+                    console.log('startTime',startTime,'duration',startTime-initTime);
+                }
+                frameCount += 1;
+                if(frameCount % 1000 === 0) {
+                    let fps = 1000 * frameCount / (time - startTime);
+                    console.log(frameCount,fps,'fps');
+                } 
+                if ((time - startTime) /1000 > 60 && shouldLog){
+                    shouldLog = false;
+                    let fps = 1000 * frameCount / (time - startTime);
+                    console.log('1min', (time - startTime)/1000, frameCount,fps,'fps');
+                }
+            }
+            
+          
+		}
+        window.requestAnimationFrame(animate);
+
+     
+	</script>
+</body>
+
+</html>

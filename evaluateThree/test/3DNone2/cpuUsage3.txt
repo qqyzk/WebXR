@@ -1,0 +1,60 @@
+1,   484 system       -3  -8  11G 5.2M 4.1M S  9.3   0.0  42:21.99 android.hardware.graphics.composer@2.4-service
+2,   484 system       -3  -8  11G 5.2M 4.1M S  9.3   0.0  42:22.35 android.hardware.graphics.composer@2.4-service
+3,   484 system       -3  -8  11G 5.2M 4.1M S  9.0   0.0  42:22.73 android.hardware.graphics.composer@2.4-service
+4,   484 system       -3  -8  11G 5.2M 4.1M S 12.1   0.0  42:23.11 android.hardware.graphics.composer@2.4-service
+5,   484 system       -3  -8  11G 5.2M 4.1M S  9.3   0.0  42:23.50 android.hardware.graphics.composer@2.4-service
+6,   484 system       -3  -8  11G 5.2M 4.1M S  9.3   0.0  42:23.88 android.hardware.graphics.composer@2.4-service
+7,   484 system       -3  -8  11G 5.2M 4.1M S 12.5   0.0  42:24.25 android.hardware.graphics.composer@2.4-service
+8,   484 system       -3  -8  11G 5.2M 4.1M S  9.0   0.0  42:24.63 android.hardware.graphics.composer@2.4-service
+9,   484 system       -3  -8  11G 5.2M 4.1M S 12.1   0.0  42:25.03 android.hardware.graphics.composer@2.4-service
+10,   484 system       -3  -8  11G 5.2M 4.1M S  9.3   0.0  42:25.41 android.hardware.graphics.composer@2.4-service
+11,   484 system       -3  -8  11G 5.2M 4.1M S  9.3   0.0  42:25.80 android.hardware.graphics.composer@2.4-service
+12,   484 system       -3  -8  11G 5.2M 4.1M S  9.3   0.0  42:26.18 android.hardware.graphics.composer@2.4-service
+13, [1m  484 system       -3  -8  11G 5.2M 4.1M R  9.0   0.0  42:26.56 android.hardware.graphics.composer@2.4-service[m
+14,   484 system       -3  -8  11G 5.2M 4.1M S  9.3   0.0  42:26.94 android.hardware.graphics.composer@2.4-service
+15,   484 system       -3  -8  11G 5.2M 4.1M S  9.0   0.0  42:27.32 android.hardware.graphics.composer@2.4-service
+16,   484 system       -3  -8  11G 5.2M 4.1M S  9.0   0.0  42:27.70 android.hardware.graphics.composer@2.4-service
+17,   484 system       -3  -8  11G 5.2M 4.1M S 12.1   0.0  42:28.06 android.hardware.graphics.composer@2.4-service
+18,   484 system       -3  -8  11G 5.2M 4.1M S  9.3   0.0  42:28.45 android.hardware.graphics.composer@2.4-service
+19,   484 system       -3  -8  11G 5.2M 4.1M S  9.0   0.0  42:28.81 android.hardware.graphics.composer@2.4-service
+20,   484 system       -3  -8  11G 5.2M 4.1M S 12.5   0.0  42:29.19 android.hardware.graphics.composer@2.4-service
+21,   484 system       -3  -8  11G 5.2M 4.1M S  9.3   0.0  42:29.58 android.hardware.graphics.composer@2.4-service
+22,   484 system       -3  -8  11G 5.2M 4.1M S  9.0   0.0  42:29.96 android.hardware.graphics.composer@2.4-service
+23,   484 system       -3  -8  11G 5.2M 4.1M S  9.0   0.0  42:30.33 android.hardware.graphics.composer@2.4-service
+24,   484 system       -3  -8  11G 5.2M 4.1M S 12.5   0.0  42:30.70 android.hardware.graphics.composer@2.4-service
+25,   484 system       -3  -8  11G 5.2M 4.1M S  9.0   0.0  42:31.11 android.hardware.graphics.composer@2.4-service
+26,   484 system       -3  -8  11G 5.2M 4.1M S  9.0   0.0  42:31.48 android.hardware.graphics.composer@2.4-service
+27, [1m  484 system       -3  -8  11G 5.2M 4.1M R 12.5   0.0  42:31.85 android.hardware.graphics.composer@2.4-service[m
+28,   484 system       -3  -8  11G 5.2M 4.1M S  6.2   0.0  42:32.24 android.hardware.graphics.composer@2.4-service
+29,   484 system       -3  -8  11G 5.2M 4.1M S  9.0   0.0  42:32.62 android.hardware.graphics.composer@2.4-service
+30,   484 system       -3  -8  11G 5.2M 4.1M S 12.5   0.0  42:32.99 android.hardware.graphics.composer@2.4-service
+31,   484 system       -3  -8  11G 5.2M 4.1M S  9.0   0.0  42:33.36 android.hardware.graphics.composer@2.4-service
+32,   484 system       -3  -8  11G 5.2M 4.1M S  9.3   0.0  42:33.71 android.hardware.graphics.composer@2.4-service
+33,   484 system       -3  -8  11G 5.2M 4.1M S 12.1   0.0  42:34.07 android.hardware.graphics.composer@2.4-service
+34, [1m  484 system       -3  -8  11G 5.2M 4.1M R  9.0   0.0  42:34.45 android.hardware.graphics.composer@2.4-service[m
+35, [1m  484 system       -3  -8  11G 5.2M 4.1M R  9.0   0.0  42:34.82 android.hardware.graphics.composer@2.4-service[m
+36,   484 system       -3  -8  11G 5.2M 4.1M S 12.1   0.0  42:35.21 android.hardware.graphics.composer@2.4-service
+37,   484 system       -3  -8  11G 5.2M 4.1M S  9.3   0.0  42:35.59 android.hardware.graphics.composer@2.4-service
+38,   484 system       -3  -8  11G 5.2M 4.1M S 12.5   0.0  42:35.95 android.hardware.graphics.composer@2.4-service
+39,   484 system       -3  -8  11G 5.2M 4.1M S  9.0   0.0  42:36.33 android.hardware.graphics.composer@2.4-service
+40,   484 system       -3  -8  11G 5.2M 4.1M S  9.3   0.0  42:36.70 android.hardware.graphics.composer@2.4-service
+41,   484 system       -3  -8  11G 5.2M 4.1M S 12.1   0.0  42:37.07 android.hardware.graphics.composer@2.4-service
+42,   484 system       -3  -8  11G 5.2M 4.1M S  9.3   0.0  42:37.45 android.hardware.graphics.composer@2.4-service
+43, [1m  484 system       -3  -8  11G 5.2M 4.1M R  9.0   0.0  42:37.82 android.hardware.graphics.composer@2.4-service[m
+44,   484 system       -3  -8  11G 5.2M 4.1M S  9.3   0.0  42:38.20 android.hardware.graphics.composer@2.4-service
+45,   484 system       -3  -8  11G 5.2M 4.1M S  9.0   0.0  42:38.58 android.hardware.graphics.composer@2.4-service
+46,   484 system       -3  -8  11G 5.2M 4.1M S 12.5   0.0  42:38.96 android.hardware.graphics.composer@2.4-service
+47,   484 system       -3  -8  11G 5.2M 4.1M S 12.1   0.0  42:39.32 android.hardware.graphics.composer@2.4-service
+48,   484 system       -3  -8  11G 5.2M 4.1M S 12.1   0.0  42:39.69 android.hardware.graphics.composer@2.4-service
+49,   484 system       -3  -8  11G 5.2M 4.1M S  6.2   0.0  42:40.08 android.hardware.graphics.composer@2.4-service
+50,   484 system       -3  -8  11G 5.2M 4.1M S  9.0   0.0  42:40.46 android.hardware.graphics.composer@2.4-service
+51,   484 system       -3  -8  11G 5.2M 4.1M S  9.0   0.0  42:40.84 android.hardware.graphics.composer@2.4-service
+52,   484 system       -3  -8  11G 5.2M 4.1M S  9.3   0.0  42:41.23 android.hardware.graphics.composer@2.4-service
+53,   484 system       -3  -8  11G 5.2M 4.1M S 12.5   0.0  42:41.61 android.hardware.graphics.composer@2.4-service
+54,   484 system       -3  -8  11G 5.2M 4.1M S 12.1   0.0  42:41.98 android.hardware.graphics.composer@2.4-service
+55,   484 system       -3  -8  11G 5.2M 4.1M S  9.0   0.0  42:42.38 android.hardware.graphics.composer@2.4-service
+56,   484 system       -3  -8  11G 5.2M 4.1M S  9.3   0.0  42:42.76 android.hardware.graphics.composer@2.4-service
+57,   484 system       -3  -8  11G 5.2M 4.1M S  9.3   0.0  42:43.13 android.hardware.graphics.composer@2.4-service
+58,   484 system       -3  -8  11G 5.2M 4.1M S  9.3   0.0  42:43.49 android.hardware.graphics.composer@2.4-service
+59,   484 system       -3  -8  11G 5.2M 4.1M S 12.5   0.0  42:43.86 android.hardware.graphics.composer@2.4-service
+60,   484 system       -3  -8  11G 5.2M 4.1M S 12.1   0.0  42:44.22 android.hardware.graphics.composer@2.4-service

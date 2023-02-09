@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>PlayCanvas Load GLTF</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no' />
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+    <script src='./src/playcanvas-stable.min.js'></script>
+</head>
+<body>
+    <canvas id='application'></canvas>
+    <script>
+        // create a PlayCanvas application
+        const canvas = document.getElementById('application');
+        const app = new pc.Application(canvas,{});
+
+        // fill the available space at full resolution
+        app.setCanvasFillMode(pc.FILLMODE_FILL_WINDOW);
+        app.setCanvasResolution(pc.RESOLUTION_AUTO);
+
+        // ensure canvas is resized when window changes size
+        window.addEventListener('resize', () => app.resizeCanvas());
+
+        pc.WasmModule.setConfig("DracoDecoderModule", {
+            glueUrl: "./draco/draco.wasm.js",
+            wasmUrl: "./draco/draco.wasm.wasm",
+            fallbackUrl: "./draco/draco.js",
+        });
+
+        pc.WasmModule.getInstance("DracoDecoderModule", demo);
+        let girl=null;
+        let curRotate=0;
+        function demo() {
+            app.scene.ambientLight = new pc.Color(0.2, 0.2, 0.2);
+            // Create an Entity with a camera component
+            const camera = new pc.Entity();
+            camera.addComponent("camera", {
+                clearColor: new pc.Color(0.2, 0.2, 0.2),
+            });
+
+            camera.translate(0, 0.5, 4);
+            app.root.addChild(camera);
+
+            // Create an entity with a omni light component
+            const light = new pc.Entity();
+            light.addComponent("light", {
+                type: "omni",
+                intensity: 3,
+            });
+
+            light.setLocalPosition(1, 1, 5);
+            app.root.addChild(light);
+            // Load a glb/gltf file as a container
+            // const url="../gltf/compress/girl/scene.glb"
+            const url='../gltf/scifi_girl/scene.gltf'
+            app.assets.loadFromUrl(url, "container", function (err, asset) {
+                // create an instance using render component
+                const entity = asset.resource.instantiateRenderEntity({
+                    castShadows: true,
+                });
+                girl=entity;
+                app.root.addChild(entity);
+                entity.setLocalScale(0.05, 0.05, 0.05);  
+            });
+            app.start();
+            let startFlag = true;
+            let frameCount = 0;
+            let startTime = null;
+            let shouldLog = true;
+            app.on("update", function (dt) {
+                    curRotate+=0.001;
+                    if(curRotate>1)
+                        curRotate-=1;
+                    if (girl) {
+                        girl.rotate(0,curRotate,0);
+                    }
+                    if(girl){
+                        let time=performance.now();
+                        if (startFlag) {
+                            startTime = time;
+                            startFlag = false;
+                            console.log('startTime',startTime);
+                            console.log('stats fps:',app.stats.frame.fps);
+                        }
+                        frameCount += 1;
+                        if(frameCount % 1000 === 0) {
+                            let fps = 1000 * frameCount / (time - startTime);
+                            console.log(frameCount,fps,'fps');
+                            console.log('stats fps:',app.stats.frame.fps);
+                        } 
+                        if ((time - startTime) /1000 > 60 && shouldLog){
+                            shouldLog = false;
+                            let fps = 1000 * frameCount / (time - startTime);
+                            console.log('1min', (time - startTime)/1000, frameCount,fps,'fps');
+                            console.log('stats fps:',app.stats.frame.fps);
+                            
+                        }
+                    }
+            });//on update
+        }
+
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>PlayCanvas Hello Cube</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no' />
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+    <script src='./src/playcanvas-stable.min.js'></script>
+    <script src="./src/obj-model.js"></script>
+</head>
+<body>
+    <canvas id='application'></canvas>
+    <script>
+        
+        let name='DamagedHelmet';
+        let type='glb';
+        let N=2;
+        // create a PlayCanvas application
+        const canvas = document.getElementById('application');
+        const app = new pc.Application(canvas);
+        app.scene.ambientLight = new pc.Color(0.2, 0.2, 0.2);
+
+        // fill the available space at full resolution
+        app.setCanvasFillMode(pc.FILLMODE_FILL_WINDOW);
+        app.setCanvasResolution(pc.RESOLUTION_AUTO);
+
+        // ensure canvas is resized when window changes size
+        window.addEventListener('resize', () => app.resizeCanvas());
+       
+        app.loader
+            .getHandler("model")
+            .addParser(new ObjModelParser(app.graphicsDevice), function (url) {
+                return pc.path.getExtension(url) === ".obj";
+            });
+        let entity;
+        // const objurl = "../obj/Box/Box.obj";
+        // const objurl = "../obj/monkey.obj";
+        const objurl = "../obj/BoomBox/BoomBox.obj";
+        app.assets.loadFromUrl(objurl, "model", function (err, asset) {
+            app.start();
+
+            entity = new pc.Entity();
+            entity.addComponent("model");
+            entity.model.model = asset.resource;
+            entity.setLocalScale(30,30,30);
+            app.root.addChild(entity);
+
+            // add a randomly generated material to all mesh instances
+            const mis = entity.model.meshInstances;
+            for (let i = 0; i < mis.length; i++) {
+                const material = new pc.StandardMaterial();
+                material.diffuse = new pc.Color(
+                    pc.math.random(0, 1),
+                    pc.math.random(0, 1),
+                    pc.math.random(0, 1)
+                );
+                material.update();
+                mis[i].material = material;
+            }
+        });
+        
+        
+
+        
+
+         // Create an Entity with a camera component
+    const camera = new pc.Entity();
+    camera.addComponent("camera", {
+        clearColor: new pc.Color(0.4, 0.45, 0.5),
+    });
+
+    camera.translate(0, 0, 5);
+    app.root.addChild(camera);
+
+    // Create an Entity with a omni light component
+    const light = new pc.Entity();
+    light.addComponent("light", {
+        type: "omni",
+        color: new pc.Color(1, 1, 1),
+        range: 100,
+    });
+
+    light.translate(5, 0, 15);
+    app.root.addChild(light);
+
+    app.on("update", function (dt) {
+        if (entity) {
+            entity.rotate(0, 100 * dt, 0);
+        }
+    });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>aframe-ar clickable entities</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="./src/aframe.min.js"></script>
+
+
+  </head>  
+  <body>
+    <script >     
+       
+      AFRAME.registerComponent('treeman', {
+          init: function(){
+              let el = this.el;
+              let sceneEl = document.querySelector('a-scene');
+              let trees = sceneEl.querySelector('#BoomBox');
+              el.addEventListener("model-loaded", e =>{
+                  //trees.emit('modelisloaded');
+                  let tree3D = el.getObject3D('mesh');
+                  
+               
+                  let countX = 10;
+                  let cubes = [];
+                  let size = 0.125, spacing = 0.05, x;
+                  for (let i=0; i<countX; i++){
+                    cubes[i] = document.createElement('a-entity'); // create the element
+                     // create components, id, geometry, position
+                    cubes[i].setAttribute('id', 'tree_'+i.toString());
+                    cubes[i].setAttribute('gltf-model', '#BoomBox');
+                    x = (size + spacing) * countX * (-0.5) + i * (size + spacing) ;
+                    y = Math.random() * 0.25;
+                    z = Math.random() * 1;
+                    // cubes[i].setAttribute('position', x.toString()+ ' '+y.toString()+' '+z.toString() );
+                    cubes[i].setAttribute('position','0 -1 -3');
+                    cubes[i].setAttribute('scale','5 5 5');
+
+                    
+                    // you can add event listeners here for interaction, such as mouse events.
+                    sceneEl.appendChild(cubes[i]);// Append the element to the scene, so it becomes part of the DOM.
+                  }           
+            });
+          }
+      });
+     
+  </script>
+    <a-scene >
+      <a-asset>
+        <a-asset-item id="BoomBox" src="../gltf/BoomBox/BoomBox.gltf"></a-asset-item>
+        <img id="radsky" src="https://cdn.glitch.com/fa31768d-daa2-4e3f-a525-5d4a9630e983%2FRADSKY-NightBloom.jpg">
+      </a-asset>     
+       <a-entity id="treemodel" visible="true" gltf-model="#BoomBox" scale="50 50 50" treeman></a-entity>
+    
+      <a-entity camera orbit-controls="initialPosition: 0 0 -2"></a-entity> 
+    </a-scene>
+  </body>
+  
+</html>
