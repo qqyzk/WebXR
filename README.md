@@ -7,20 +7,13 @@ XR by evaluating their runtime performance, including 3D rendering, camera captu
 
 The seven chosen frameworks are as follows:
 
-* **Three.js** is a Javascript 3D library that aims to create an
-  easy-to-use, lightweight, cross-browser, general-purpose 3D library.
+* **Three.js** is a Javascript 3D library that aims to create an easy-to-use, lightweight, cross-browser, general-purpose 3D library.
 * **React-three-fiber** is a React renderer for three.js.
-*  **Babylon.js** tends to create a powerful, beautiful, simple, and
-  open game and rendering engine.
-* **A-Frame** is a web framework for building virtual reality expe-
-  riences, which makes 3D worlds with HTML and entity-component.
-*  **Playcanvas** aims to provide a fast and lightweight Javascript
-  game engine build on WebGL and GLTF.
-* **AR.js** is a javascript framework that supports augmented
-  reality functions, including image tracking, location-based AR, and
-  marker tracking.
-* **MindAR.js** is a framework for web-based augmented reality,
-  which provides image tracking and face tracking functions.
+*  **Babylon.js** tends to create a powerful, beautiful, simple, and open game and rendering engine.
+* **A-Frame** is a web framework for building virtual reality experiences, which makes 3D worlds with HTML and entity-component.
+*  **Playcanvas** aims to provide a fast and lightweight Javascript game engine build on WebGL and GLTF.
+* **AR.js** is a javascript framework that supports augmented reality functions, including image tracking, location-based AR, and marker tracking.
+* **MindAR.js** is a framework for web-based augmented reality, which provides image tracking and face tracking functions.
 
 The characteristics of frameworks for web-based XR is shown in the following table.
 
