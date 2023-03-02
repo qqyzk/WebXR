@@ -198,7 +198,7 @@ class Tracelib {
     }
 }
 
-let JANK_TRACE_LOG = require('./results/vr/babylon/babylon-gltf-BoomBox-4096.json');
+let JANK_TRACE_LOG = require('./ar-threear-gltf-Box-512.json');
 const tasks = new Tracelib(JANK_TRACE_LOG);
 // let gpu_summary = tasks.getGPUUsage(t5,t6);
 // console.log(gpu_summary.gpu/(gpu_summary.endTime-gpu_summary.startTime));

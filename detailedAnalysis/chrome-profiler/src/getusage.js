@@ -279,161 +279,17 @@ class Tracelib {
   
 }
 
-// let models=['Box','BoxTextured','BoomBox','DamagedHelmet'];
-// let models=['BoxTextured'];
-// let nums=['8','64','512','4096'];
-// let writeRes='';
-// for(let i=0;i<models.length;++i){
-//     for(let j=0;j<nums.length;++j){
-//         let filename = './results/vr/aframe/aframe-gltf-'+models[i]+'-'+nums[j]+'.json';
-//         let log = require(filename)
-//         const tasks = new Tracelib(log);
-//         let clickScriptTimes = tasks.getClickTime();
-//         let networkTimes = tasks.getNetworkTimes();
-//         let imageDecodeTimes = tasks.getImageDecodeTimes();
-//         console.log(clickScriptTimes.start,clickScriptTimes.end,networkTimes.start,networkTimes.end,imageDecodeTimes.start,imageDecodeTimes.end)
-//         writeRes+=clickScriptTimes.start+','+clickScriptTimes.end+','+networkTimes.start+','+networkTimes.end+','+imageDecodeTimes.start+','+imageDecodeTimes.end+'\n';
-//         // console.log(writeRes)
-      
-//     }
-   
-// }
-// const fs = require('fs');
-// fs.writeFileSync('../file2.txt', writeRes);
-let starts = [
-    292169828.1,
-    292364046.4,
-    292520491.5,
-    292660998.4,
-    293018279.8,
-    74577265.44,
-    74715321.79,
-    74852467.42,
-    74987460.05,
-    75138627.64,
-    75282884.58,
-    75396279.05,
-    75646042.79,
-    75789667.04,
-    75924080.19,
-    76116964.61,
-    76285877.76,
-    76409378.55,
-    76538624.26,
-    76827160.21
-    ]
 
-let ends = [292169832.3,
-    292364064,
-    292520529.7,
-    292661156.3,
-    293019338.5,
-    74577272.94,
-    74715346.09,
-    74852507.32,
-    74987689.75,
-    75140071.14,
-    75282892.48,
-    75396306.45,
-    75646101.09,
-    75789928.84,
-    75926246.3,
-    76116970.41,
-    76285901.66,
-    76409423.34,
-    76539036.76,
-    76831632.31]
+let filename = '../data/profiled-data.json'
+let JANK_TRACE_LOG = require(filename);
+const tasks = new Tracelib(JANK_TRACE_LOG);
 
-let models = ['Box','BoxTextured1','BoxTextured2','BoxTextured4']
-let nums = ['8','64','512','4096','32768']
-let p=0
-for(let i=0;i<models.length;++i){
-    for(let j=0;j<nums.length;++j){
-        // if(models[i]==='BoxTextured1' || models[i]==='BoxTextured2'){
-        //    if(nums[j]!=='8' && nums[j]!=='64'){
-        //     continue;
-        //    }
-        // }
-        // if(models[i]==='BoxTextured4'){
-        //     if(nums[j]!=='8'){
-        //      continue;
-        //     }
-        //  }
-        // if(models[i]!=='Box' && nums[j]==='32768')
-        //     continue;
-      
-        let filename = './results/vr/reactthreefiber/reactthreefiber-gltf-'+models[i]+'-'+nums[j]+'.json'
-        let JANK_TRACE_LOG = require(filename);
-        const tasks = new Tracelib(JANK_TRACE_LOG);
-        let start = starts[p];
-        let end = start+5000;
-        p+=1;
-        let writefile = 'after-reactthreefiber-gltf-'+models[i]+'-'+nums[j];
-        tasks.getUsageArray(start,end,writefile)
+let start = tasks.getClickTime().start;
+let end = start+10000;
+let writefile = '../data/usage';
+tasks.getUsageArray(start,end,writefile)
         // let summary = tasks.getSummary();
-        // let cpuusage = summary.scripting/(summary.endTime-summary.startTime);
-        // let gpu_summary = tasks.getGPUUsage();
-        // console.log(models[i],nums[j],cpuusage,gpu_summary.gpu/(gpu_summary.endTime-gpu_summary.startTime));
-    }
-}
-
-
-// let gpu_summary = tasks.getGPUUsage(t5,t6);
-// console.log(gpu_summary.gpu/(gpu_summary.endTime-gpu_summary.startTime));
-// let clickTime=4005.1;
-// let sceneLoadTime=5265;
-// let firstRenderTime=5533.5;
-// let clickScriptTime = tasks.getClickTime();
-// let networkTimes = tasks.getNetworkTimes();
-// let imageDecodeTimes = tasks.getImageDecodeTimes();
-// let t1=networkTimes.start;
-// let t2 = networkTimes.end;
-// let t3=imageDecodeTimes.end;
-// let t4=sceneLoadTime-clickTime+t1;
-// let t5=firstRenderTime-clickTime+t1;
-// let t6=t5+60000;
-
-// tasks.getClickTime()
-// console.log(clickScriptTime,networkTimes.start,networkTimes.end,imageDecodeTimes.start,imageDecodeTimes.end)
-
-
-// let example_summary = tasks.getSummary();
-// console.log(example_summary)
-// console.log(networkTimes)
-// console.log(imageDecodeTimes)
-// tasks.getUsageArray(11917955.315,t5+1000)
-
-
-// let summary = tasks.getSummary(t1,t2);
-// let cpuusage1 = summary.scripting/(summary.endTime-summary.startTime);
-// let gpu_summary = tasks.getGPUUsage(t1,t2);
-// let gpuusage1=gpu_summary.gpu/(gpu_summary.endTime-gpu_summary.startTime);
-// summary = tasks.getSummary(t2,t3);
-// let cpuusage2 = summary.scripting/(summary.endTime-summary.startTime);
-// gpu_summary = tasks.getGPUUsage(t2,t3);
-// let gpuusage2=gpu_summary.gpu/(gpu_summary.endTime-gpu_summary.startTime);
-// summary = tasks.getSummary(t3,t4);
-// let cpuusage3 = summary.scripting/(summary.endTime-summary.startTime);
-// gpu_summary = tasks.getGPUUsage(t3,t4);
-// let gpuusage3=gpu_summary.gpu/(gpu_summary.endTime-gpu_summary.startTime);
-// summary = tasks.getSummary(t4,t5);
-// let cpuusage4 = summary.scripting/(summary.endTime-summary.startTime);
-// gpu_summary = tasks.getGPUUsage(t4,t5);
-// let gpuusage4=gpu_summary.gpu/(gpu_summary.endTime-gpu_summary.startTime);
-// summary = tasks.getSummary(t5,t6);
-// let cpuusage5 = summary.scripting/(summary.endTime-summary.startTime);
-// gpu_summary = tasks.getGPUUsage(t5,t6);
-// let gpuusage5=gpu_summary.gpu/(gpu_summary.endTime-gpu_summary.startTime);
-
-// console.log(networkTimes.start,networkTimes.end,imageDecodeTimes.start,imageDecodeTimes.end)
-// console.log(cpuusage1,gpuusage1,cpuusage2,gpuusage2,cpuusage3,gpuusage3,cpuusage4,gpuusage4,cpuusage5,gpuusage5);
-
-// let loading_summary = tasks.getSummary(t1,t5);
-// let loading_cpuusage = loading_summary.scripting/(loading_summary.endTime-loading_summary.startTime);
-// let loading_gpu_summary = tasks.getGPUUsage(t1,t5);
-// let loading_gpuusage = loading_gpu_summary.gpu/(loading_gpu_summary.endTime-loading_gpu_summary.startTime);
-// console.log((100*loading_cpuusage).toFixed(1),(100*loading_gpuusage).toFixed(1),(t5-t1).toFixed(1));
 
 
 exports.default = Tracelib;
-//# sourceMappingURL=index.js.map
+

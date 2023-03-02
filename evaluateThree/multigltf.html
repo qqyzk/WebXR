@@ -26,48 +26,16 @@
 	<script type="module">
         window.events = [];
 
-        function shimAll(){
-            const funcs1 = {};
-            const funcs2 = {};
-
-            function shim(proto, name){
-                const p = proto;
-                if (!p[name]) return ;
-                const f = p[name];
-
-                funcs1[name] = f;
-                function wrapped(){
-                    const err = new Error();
-                    window.events.push([performance.now(), name, err.stack, ...arguments]);
-                    const r = f.call(this, ...arguments);
-                    window.events.push([performance.now(), name + "End", err.stack, ...arguments]);
-                    return r;
-                }
-                p[name] = wrapped;
-            }
-
-            const proto = WebGLRenderingContext.prototype;
-            const proto2 = WebGL2RenderingContext.prototype;
-
-            for (const name in proto2){
-                try { proto2[name];	} catch (e){ continue; }
-
-                if (typeof proto2[name] === "function")
-                    shim(proto2, name);
-            }
-            // shim(proto2, "programBinary");
-        }
-        // shimAll();
-        
+       
         // To start an AR scene with webXR, we can use a handy button provided by three.js
         // We first have to import it because it is a javascript module
        
         // import * as THREE from 'three';
-        import * as THREE from './node_modules/three/build/three.module.js';
+        import * as THREE from './src/three.module.js';
         // import { GLTFLoader } from 'GLTFLoader';
-        import {GLTFLoader} from "./node_modules/three/examples/jsm/loaders/GLTFLoader2.js";
+        import {GLTFLoader} from "./src/GLTFLoader2.js";
         // import { RoomEnvironment } from 'RoomEnvironment';
-        // import {RoomEnvironment} from "./node_modules/three/examples/jsm/environments/RoomEnvironment.js";
+        import {RoomEnvironment} from "./src/RoomEnvironment2.js";
         // import Stats from 'stats';
         import Stats from "./src/myStats.js";
         // import {DRACOLoader} from 'DRACOLoader';
@@ -99,7 +67,7 @@
            
             const pmremGenerator = new THREE.PMREMGenerator( renderer );
 			scene = new THREE.Scene();
-            // scene.environment = pmremGenerator.fromScene( new RoomEnvironment(), 0.04 ).texture;
+            scene.environment = pmremGenerator.fromScene( new RoomEnvironment(), 0.04 ).texture;
 			camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight,1,100 );
            
                 

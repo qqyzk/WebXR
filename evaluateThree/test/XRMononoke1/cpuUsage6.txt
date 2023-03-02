@@ -1,60 +1,0 @@
-1, 12803 system       -2   0  14G 288M 213M S  169   3.7 374:30.65 android.hardware.camera.provider@2.7-service-google
-2, 12803 system       -2   0  14G 289M 213M S  202   3.8 374:43.18 android.hardware.camera.provider@2.7-service-google
-3, [1m12803 system       -2   0  14G 288M 212M R  177   3.7 374:56.45 android.hardware.camera.provider@2.7-service-google[m
-4, 12803 system       20   0  14G 288M 212M S  195   3.7 375:08.35 android.hardware.camera.provider@2.7-service-google
-5, 12803 system       -2   0  14G 288M 212M S  236   3.7 375:20.69 android.hardware.camera.provider@2.7-service-google
-6, 12803 system       20   0  14G 288M 212M S  196   3.7 375:33.42 android.hardware.camera.provider@2.7-service-google
-7, 12803 system       20   0  14G 288M 212M S  206   3.7 375:45.39 android.hardware.camera.provider@2.7-service-google
-8, 12803 system       -2   0  14G 288M 212M S  202   3.7 375:56.74 android.hardware.camera.provider@2.7-service-google
-9, 12803 system       20   0  14G 288M 212M S  200   3.7 376:08.56 android.hardware.camera.provider@2.7-service-google
-10, 12803 system       20   0  14G 289M 212M S  191   3.8 376:20.39 android.hardware.camera.provider@2.7-service-google
-11, 12803 system       20   0  14G 289M 212M S  184   3.8 376:31.74 android.hardware.camera.provider@2.7-service-google
-12, 12803 system       -2   0  14G 289M 212M S  208   3.8 376:44.30 android.hardware.camera.provider@2.7-service-google
-13, 12803 system       20   0  14G 288M 212M S  194   3.7 376:55.64 android.hardware.camera.provider@2.7-service-google
-14, 12803 system       20   0  14G 288M 212M S  170   3.7 377:07.24 android.hardware.camera.provider@2.7-service-google
-15, 12803 system       -2   0  14G 289M 212M S  211   3.7 377:18.79 android.hardware.camera.provider@2.7-service-google
-16, 12803 system       20   0  14G 289M 212M S  212   3.8 377:30.80 android.hardware.camera.provider@2.7-service-google
-17, 12803 system       20   0  14G 288M 212M S  194   3.7 377:42.10 android.hardware.camera.provider@2.7-service-google
-18, 12803 system       20   0  14G 289M 212M S  159   3.7 377:54.38 android.hardware.camera.provider@2.7-service-google
-19, 12803 system       20   0  14G 288M 212M S  202   3.7 378:06.00 android.hardware.camera.provider@2.7-service-google
-20, 12803 system       20   0  14G 288M 212M S  171   3.7 378:17.65 android.hardware.camera.provider@2.7-service-google
-21, 12803 system       20   0  14G 288M 212M S  208   3.7 378:29.11 android.hardware.camera.provider@2.7-service-google
-22, [1m12803 system       20   0  14G 288M 212M R  167   3.7 378:41.06 android.hardware.camera.provider@2.7-service-google[m
-23, 12803 system       20   0  14G 288M 212M S  189   3.7 378:53.56 android.hardware.camera.provider@2.7-service-google
-24, 12803 system       20   0  14G 288M 212M S  194   3.7 379:05.24 android.hardware.camera.provider@2.7-service-google
-25, 12803 system       20   0  14G 289M 212M S  209   3.7 379:16.48 android.hardware.camera.provider@2.7-service-google
-26, [1m12803 system       20   0  14G 288M 212M R  186   3.7 379:27.94 android.hardware.camera.provider@2.7-service-google[m
-27, 12803 system       20   0  14G 288M 212M S  206   3.7 379:39.42 android.hardware.camera.provider@2.7-service-google
-28, 12803 system       20   0  14G 288M 212M S  211   3.7 379:51.40 android.hardware.camera.provider@2.7-service-google
-29, 12803 system       20   0  14G 288M 212M S  197   3.7 380:03.31 android.hardware.camera.provider@2.7-service-google
-30, 12803 system       -2   0  14G 288M 212M S  212   3.7 380:15.34 android.hardware.camera.provider@2.7-service-google
-31, 12803 system       20   0  14G 288M 212M S  200   3.7 380:27.68 android.hardware.camera.provider@2.7-service-google
-32, 12803 system       20   0  14G 289M 212M S  184   3.8 380:39.42 android.hardware.camera.provider@2.7-service-google
-33, 12803 system       -2   0  14G 288M 212M S  177   3.7 380:50.92 android.hardware.camera.provider@2.7-service-google
-34, 12803 system       20   0  14G 288M 212M S  153   3.7 381:02.62 android.hardware.camera.provider@2.7-service-google
-35, 12803 system       20   0  14G 288M 212M S  205   3.7 381:14.06 android.hardware.camera.provider@2.7-service-google
-36, 12803 system       -2   0  14G 289M 212M S  151   3.8 381:25.75 android.hardware.camera.provider@2.7-service-google
-37, 12803 system       -2   0  14G 289M 212M S  194   3.8 381:37.63 android.hardware.camera.provider@2.7-service-google
-38, 12803 system       20   0  14G 289M 212M S  197   3.8 381:48.96 android.hardware.camera.provider@2.7-service-google
-39, 12803 system       -2   0  14G 288M 212M S  197   3.7 382:00.85 android.hardware.camera.provider@2.7-service-google
-40, 12803 system       20   0  14G 289M 212M S  206   3.8 382:12.33 android.hardware.camera.provider@2.7-service-google
-41, 12803 system       20   0  14G 288M 212M S  181   3.7 382:23.89 android.hardware.camera.provider@2.7-service-google
-42, 12803 system       -2   0  14G 288M 212M S  181   3.7 382:35.37 android.hardware.camera.provider@2.7-service-google
-43, 12803 system       20   0  14G 288M 212M S  212   3.7 382:47.14 android.hardware.camera.provider@2.7-service-google
-44, 12803 system       20   0  14G 288M 212M S  184   3.7 382:58.95 android.hardware.camera.provider@2.7-service-google
-45, 12803 system       20   0  14G 289M 212M S  202   3.8 383:11.05 android.hardware.camera.provider@2.7-service-google
-46, 12803 system       20   0  14G 289M 212M S  217   3.7 383:23.41 android.hardware.camera.provider@2.7-service-google
-47, 12803 system       20   0  14G 289M 212M S  191   3.7 383:35.62 android.hardware.camera.provider@2.7-service-google
-48, 12803 system       20   0  14G 288M 212M S  200   3.7 383:47.03 android.hardware.camera.provider@2.7-service-google
-49, 12803 system       20   0  14G 288M 212M S  211   3.7 383:58.84 android.hardware.camera.provider@2.7-service-google
-50, 12803 system       20   0  14G 288M 212M S  159   3.7 384:10.90 android.hardware.camera.provider@2.7-service-google
-51, [1m12803 system       20   0  14G 288M 212M R  211   3.7 384:22.98 android.hardware.camera.provider@2.7-service-google[m
-52, 12803 system       20   0  14G 289M 212M S  203   3.7 384:35.01 android.hardware.camera.provider@2.7-service-google
-53, 12803 system       20   0  14G 288M 212M S  170   3.7 384:47.83 android.hardware.camera.provider@2.7-service-google
-54, 12803 system       20   0  14G 289M 212M S  218   3.8 384:59.14 android.hardware.camera.provider@2.7-service-google
-55, 12803 system       20   0  14G 289M 212M S  197   3.8 385:10.61 android.hardware.camera.provider@2.7-service-google
-56, [1m12803 system       20   0  14G 289M 212M R  196   3.8 385:22.09 android.hardware.camera.provider@2.7-service-google[m
-57, [1m12803 system       20   0  14G 289M 212M R  180   3.7 385:34.20 android.hardware.camera.provider@2.7-service-google[m
-58, 12803 system       -2   0  14G 288M 212M S  217   3.7 385:45.81 android.hardware.camera.provider@2.7-service-google
-59, 12803 system       20   0  14G 288M 212M S  160   3.7 385:57.72 android.hardware.camera.provider@2.7-service-google
-60, 12803 system       20   0  14G 288M 212M S  186   3.7 386:09.46 android.hardware.camera.provider@2.7-service-google

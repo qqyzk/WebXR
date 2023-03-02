@@ -1,60 +1,0 @@
-1,   480 system       -3  -8  11G  40M  29M S 25.0   0.5  93:03.23 surfaceflinger
-2,   480 system       -3  -8  11G  40M  29M S 30.3   0.5  93:04.23 surfaceflinger
-3,   480 system       -3  -8  11G  40M  29M S 24.2   0.5  93:05.27 surfaceflinger
-4,   480 system       -3  -8  11G  40M  29M S 28.1   0.5  93:06.28 surfaceflinger
-5,   480 system       -3  -8  11G  40M  29M S 25.0   0.5  93:07.28 surfaceflinger
-6,   480 system       -3  -8  11G  40M  29M S 31.2   0.5  93:08.28 surfaceflinger
-7, [1m  480 system       -3  -8  11G  40M  29M R 27.2   0.5  93:09.31 surfaceflinger[m
-8, [1m  480 system       -3  -8  11G  40M  29M R 30.3   0.5  93:10.31 surfaceflinger[m
-9, [1m  480 system       -3  -8  11G  40M  29M R 27.2   0.5  93:11.33 surfaceflinger[m
-10, [1m  480 system       -3  -8  11G  40M  29M R 24.2   0.5  93:12.33 surfaceflinger[m
-11, [1m  480 system       -3  -8  11G  40M  29M R 25.0   0.5  93:13.31 surfaceflinger[m
-12,   480 system       -3  -8  11G  40M  29M S 27.2   0.5  93:14.31 surfaceflinger
-13, [1m  480 system       -3  -8  11G  40M  29M R 28.1   0.5  93:15.32 surfaceflinger[m
-14,   480 system       -3  -8  11G  40M  29M S 27.2   0.5  93:16.33 surfaceflinger
-15,   480 system       -3  -8  11G  40M  29M S 30.3   0.5  93:17.33 surfaceflinger
-16,   480 system       -3  -8  11G  40M  29M S 27.2   0.5  93:18.33 surfaceflinger
-17, [1m  480 system       -3  -8  11G  40M  29M R 24.2   0.5  93:19.33 surfaceflinger[m
-18,   480 system       -3  -8  11G  40M  29M S 31.2   0.5  93:20.32 surfaceflinger
-19,   480 system       -3  -8  11G  40M  29M S 24.2   0.5  93:21.34 surfaceflinger
-20,   480 system       -3  -8  11G  40M  29M S 25.0   0.5  93:22.34 surfaceflinger
-21,   480 system       -3  -8  11G  40M  29M S 27.2   0.5  93:23.36 surfaceflinger
-22,   480 system       -3  -8  11G  40M  29M S 25.0   0.5  93:24.36 surfaceflinger
-23,   480 system       -3  -8  11G  40M  29M S 24.2   0.5  93:25.37 surfaceflinger
-24, [1m  480 system       -3  -8  11G  40M  29M R 24.2   0.5  93:26.35 surfaceflinger[m
-25,   480 system       -3  -8  11G  40M  29M S 24.2   0.5  93:27.34 surfaceflinger
-26,   480 system       -3  -8  11G  40M  29M S 27.2   0.5  93:28.35 surfaceflinger
-27, [1m  480 system       -3  -8  11G  40M  29M R 30.3   0.5  93:29.35 surfaceflinger[m
-28,   480 system       -3  -8  11G  40M  29M S 27.2   0.5  93:30.36 surfaceflinger
-29,   480 system       -3  -8  11G  40M  29M S 28.1   0.5  93:31.35 surfaceflinger
-30,   480 system       -3  -8  11G  40M  29M S 21.8   0.5  93:32.36 surfaceflinger
-31,   480 system       -3  -8  11G  40M  29M S 25.0   0.5  93:33.33 surfaceflinger
-32,   480 system       -3  -8  11G  40M  29M S 25.0   0.5  93:34.32 surfaceflinger
-33, [1m  480 system       -3  -8  11G  40M  29M R 30.3   0.5  93:35.32 surfaceflinger[m
-34,   480 system       -3  -8  11G  40M  29M S 30.3   0.5  93:36.36 surfaceflinger
-35,   480 system       -3  -8  11G  40M  29M S 28.1   0.5  93:37.38 surfaceflinger
-36,   480 system       -3  -8  11G  40M  29M S 28.1   0.5  93:38.41 surfaceflinger
-37, [1m  480 system       -3  -8  11G  40M  29M R 28.1   0.5  93:39.36 surfaceflinger[m
-38,   480 system       -3  -8  11G  40M  29M S 25.0   0.5  93:40.37 surfaceflinger
-39,   480 system       -3  -8  11G  40M  29M S 27.2   0.5  93:41.34 surfaceflinger
-40,   480 system       -3  -8  11G  40M  29M S 24.2   0.5  93:42.33 surfaceflinger
-41, [1m  480 system       -3  -8  11G  40M  29M R 21.8   0.5  93:43.33 surfaceflinger[m
-42,   480 system       -3  -8  11G  40M  29M S 28.1   0.5  93:44.30 surfaceflinger
-43,   480 system       -3  -8  11G  40M  29M S 28.1   0.5  93:45.30 surfaceflinger
-44,   480 system       -3  -8  11G  40M  29M S 27.2   0.5  93:46.30 surfaceflinger
-45, [1m  480 system       -3  -8  11G  40M  29M R 24.2   0.5  93:47.31 surfaceflinger[m
-46,   480 system       -3  -8  11G  40M  29M S 25.0   0.5  93:48.33 surfaceflinger
-47, [1m  480 system       -3  -8  11G  40M  29M R 30.3   0.5  93:49.35 surfaceflinger[m
-48,   480 system       -3  -8  11G  40M  29M S 31.2   0.5  93:50.37 surfaceflinger
-49,   480 system       -3  -8  11G  40M  29M S 27.2   0.5  93:51.39 surfaceflinger
-50,   480 system       -3  -8  11G  40M  29M S 28.1   0.5  93:52.46 surfaceflinger
-51,   480 system       -3  -8  11G  40M  29M S 31.2   0.5  93:53.46 surfaceflinger
-52,   480 system       -3  -8  11G  40M  29M S 27.2   0.5  93:54.47 surfaceflinger
-53,   480 system       -3  -8  11G  40M  29M S 27.2   0.5  93:55.49 surfaceflinger
-54,   480 system       -3  -8  11G  40M  29M S 24.2   0.5  93:56.54 surfaceflinger
-55,   480 system       -3  -8  11G  40M  29M S 25.0   0.5  93:57.54 surfaceflinger
-56,   480 system       -3  -8  11G  40M  29M S 28.1   0.5  93:58.55 surfaceflinger
-57,   480 system       -3  -8  11G  40M  29M S 28.1   0.5  93:59.58 surfaceflinger
-58,   480 system       -3  -8  11G  40M  29M S 27.2   0.5  94:00.58 surfaceflinger
-59,   480 system       -3  -8  11G  40M  29M S 30.3   0.5  94:01.59 surfaceflinger
-60,   480 system       -3  -8  11G  40M  29M S 28.1   0.5  94:02.63 surfaceflinger

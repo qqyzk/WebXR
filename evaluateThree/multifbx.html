@@ -14,9 +14,9 @@
     <script type="importmap">
         {
             "imports": {
-                "three": "./node_modules/three/build/three.module.js",
-                "FBXLoader":"./node_modules/three/examples/jsm/loaders/FBXLoader.js",
-                "RoomEnvironment": "./node_modules/three/examples/jsm/environments/RoomEnvironment.js",
+                "three": "./src/three.module.js",
+                "FBXLoader":"./src/FBXLoader.js",
+                "RoomEnvironment": "./src/RoomEnvironment.js",
                 "stats": "./src/myStats.js"
 
             }
@@ -31,8 +31,8 @@
         import { FBXLoader } from 'FBXLoader';
         import { RoomEnvironment } from 'RoomEnvironment';
         import Stats from 'stats';
-        let name = 'BoxTextured';
-        let N=32;
+        let name = 'Box';
+        let N=2;
         let camera, scene, renderer,controls,stats,content;
         let loader,mesh; // we need to create a variable for a gltf model loader
         let models = [];

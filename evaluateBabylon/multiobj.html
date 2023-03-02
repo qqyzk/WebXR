@@ -6,7 +6,7 @@
 		<style>
 			body { margin: 0; }
 		</style>
-        <script src="./node_modules/babylonjs/babylon.js"></script>
+        <script src="./src/babylon.js"></script>
         <script src="./src/babylon.objFileLoader.js"></script>
 	</head>
 	<body>
@@ -18,7 +18,7 @@
                 console.log('click time',performance.now());
                     let loaded=false;
             let name='BoxTextured';
-            let N=32;
+            let N=2;
             // get the canvas DOM element
             var canvas = document.getElementById('renderCanvas');
             canvas.width=window.innerWidth;
